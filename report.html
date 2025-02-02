@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Traffic Jam</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <h1>🚦 Report Traffic Jam</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Report a New Traffic Jam</h2>
+            <form id="report-jam-form">
+                <input type="text" id="location" placeholder="Location" required>
+                <textarea id="message" placeholder="Describe the traffic jam..." required></textarea>
+                <button type="submit">Submit Jam</button>
+            </form>
+            <p id="confirmation-message" style="display:none; color: green;">Your report has been submitted successfully!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("report-jam-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const location = document.getElementById("location").value;
+            const message = document.getElementById("message").value;
+
+            // Add the new traffic jam to trafficAlerts
+            let newJam = {
+                location: location,
+                message: message,
+                timestamp: new Date()
+            };
+
+            // Simulate saving the data (e.g., to a database or an array)
+            trafficAlerts.push(newJam);
+
+            // Show a success message
+            document.getElementById("confirmation-message").style.display = "block";
+            document.getElementById("report-jam-form").reset(); // Reset the form
+
+            // Optionally, you could redirect the user after a delay
+            setTimeout(() => {
+                window.location.href = "index.html"; // Redirect to homepage
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
